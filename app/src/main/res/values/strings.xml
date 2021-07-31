@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">Nyaba Application</string>
+
+
+    <string name="forgot_password_desc">Enter your registered Email address to receive password reset instruction.</string>
+
+    <!-- Strings for On Boarding Screen -->
+
+    <string name="first_slider_title">Welcome</string>
+    <string name="second_slider_title">Some Text</string>
+    <string name="third_slider_title">Your Safety is Our Top Priority</string>
+
+    <string name="first_slider_desc">Some text</string>
+    <string name="second_slider_desc">Some descriptive text</string>
+    <string name="third_slider_desc">Our top-notch security features will keep your completely safe.</string>
+
+    <string name="skip_btn">Skip</string>
+    <string name="next_btn">Next Step</string>
+    <string name="let_get_started">Let\'s Get Started</string>
+
+    <string name="otp_code_text">OTP \nVerification</string>
+    <string name="otp_code_desc">Enter One Time Password sent to your registered Email address. </string>
+    <string name="new_credentials"><br>New \n</br><br>Credentials</br> </string>
+    <string name="new_credentials_desc"><br> Your identity has been verified! \n</br><br>Set your new password.</br></string>
+    <string name="password_change_desc">your password has been changed successfully.</string>
+
+
 </resources>

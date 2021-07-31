@@ -15,6 +15,9 @@
     <color name="gray">#B5BBC9</color>
     <color name="light_gray">#CFD2D8</color>
     <color name="primary_blue">#1B224D</color>
+    <color name="light_yellow">#F8DD8C</color>
+    <color name="faded_brown">#594D4D</color>
+    <color name="primary_gray">#1e1e1e</color>
 
 
 </resources>

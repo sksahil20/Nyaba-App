@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DocVerify">
+
+    <ImageView
+        android:id="@+id/imageView_back_arrow_"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:srcCompat="@drawable/ic_arrow_left_24" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Document Verification"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/yellow"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="450dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/black_rounded_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="0dp"
+            android:layout_height="81dp"
+            android:text="Your document photo helps us to prove your identity. It should match the information you have provided in the previous steps."
+            android:textAlignment="center"
+            android:textColor="@color/dark_gray"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/nationalID"
+            app:layout_constraintEnd_toEndOf="@+id/nationalID"
+            app:layout_constraintStart_toStartOf="@+id/nationalID"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/nationalID"
+            android:layout_width="338dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="156dp"
+            android:background="@drawable/document_verification_button"
+            android:onClick="nationalID"
+            android:text="National Id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.541"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView_nid"
+            android:layout_width="39dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="8dp"
+            android:background="@color/light_yellow"
+            app:layout_constraintBottom_toBottomOf="@+id/nationalID"
+            app:layout_constraintStart_toStartOf="@+id/nationalID"
+            app:layout_constraintTop_toTopOf="@+id/nationalID"
+            app:srcCompat="@drawable/national_id" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="157dp"
+            android:layout_height="36dp"
+            android:text="National ID"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/nationalID"
+            app:layout_constraintEnd_toEndOf="@+id/nationalID"
+            app:layout_constraintStart_toStartOf="@+id/nationalID"
+            app:layout_constraintTop_toTopOf="@+id/nationalID" />
+
+        <ImageButton
+            android:id="@+id/passport"
+            android:layout_width="338dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/document_verification_button"
+            android:onClick="passport"
+            app:layout_constraintStart_toStartOf="@+id/nationalID"
+            app:layout_constraintTop_toBottomOf="@+id/driver_licence" />
+
+        <ImageButton
+            android:id="@+id/driver_licence"
+            android:layout_width="338dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/document_verification_button"
+            android:onClick="driverLicence"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/nationalID"
+            app:layout_constraintTop_toBottomOf="@+id/nationalID" />
+
+        <ImageView
+            android:id="@+id/imageView_passport"
+            android:layout_width="39dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="8dp"
+            android:background="@color/light_yellow"
+            app:layout_constraintBottom_toBottomOf="@+id/driver_licence"
+            app:layout_constraintStart_toStartOf="@+id/driver_licence"
+            app:layout_constraintTop_toTopOf="@+id/driver_licence"
+            app:srcCompat="@drawable/passport" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="157dp"
+            android:layout_height="36dp"
+            android:text="Passport"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/driver_licence"
+            app:layout_constraintEnd_toEndOf="@+id/driver_licence"
+            app:layout_constraintStart_toStartOf="@+id/driver_licence"
+            app:layout_constraintTop_toTopOf="@+id/driver_licence" />
+
+        <ImageView
+            android:id="@+id/imageView_id_arrow"
+            android:layout_width="39dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="8dp"
+            android:background="@color/light_yellow"
+            app:layout_constraintBottom_toBottomOf="@+id/passport"
+            app:layout_constraintEnd_toEndOf="@+id/passport"
+            app:layout_constraintTop_toTopOf="@+id/passport"
+            app:srcCompat="@drawable/arrow" />
+
+        <ImageView
+            android:id="@+id/imageView_passport_arrow"
+            android:layout_width="39dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="8dp"
+            android:background="@color/light_yellow"
+            app:layout_constraintBottom_toBottomOf="@+id/driver_licence"
+            app:layout_constraintEnd_toEndOf="@+id/driver_licence"
+            app:layout_constraintTop_toTopOf="@+id/driver_licence"
+            app:srcCompat="@drawable/arrow" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Driver's License"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/passport"
+            app:layout_constraintEnd_toEndOf="@+id/passport"
+            app:layout_constraintStart_toStartOf="@+id/passport"
+            app:layout_constraintTop_toTopOf="@+id/passport" />
+
+        <ImageView
+            android:id="@+id/imageView_licence_arrow"
+            android:layout_width="39dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="8dp"
+            android:background="@color/light_yellow"
+            app:layout_constraintBottom_toBottomOf="@+id/nationalID"
+            app:layout_constraintEnd_toEndOf="@+id/nationalID"
+            app:layout_constraintTop_toTopOf="@+id/nationalID"
+            app:srcCompat="@drawable/arrow" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="174dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="32dp"
+        android:progress="33"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="@color/yellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
