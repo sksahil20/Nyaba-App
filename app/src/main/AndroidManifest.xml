@@ -13,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NyabaApplication">
-        <activity android:name=".PersonalInfo"></activity>
+        <activity android:name=".PersonalInfo"/>
         <activity android:name=".scanned_copy" />
         <activity android:name=".WellDone" />
         <activity android:name=".Front_Scan" />
+        <activity android:name=".back_scan"/>
         <activity android:name=".DocVerify" />
         <activity android:name=".NewPasswordSuccessMessage" />
         <activity android:name=".SetNewPassword" />

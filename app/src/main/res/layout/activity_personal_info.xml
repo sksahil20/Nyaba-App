@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:padding="30dp"
+    android:padding="10dp"
     tools:context=".PersonalInfo">
 
     <LinearLayout
@@ -38,14 +38,15 @@
             android:layout_width="174dp"
             android:layout_height="26dp"
             android:layout_marginTop="16dp"
-            android:progress="20"
+            android:progress="30"
             android:progressTint="@color/yellow"
             android:layout_gravity="center" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"
             app:cardBackgroundColor="@color/primary_gray"
             app:cardCornerRadius="22dp"
             app:cardElevation="4dp">
@@ -158,11 +159,15 @@
                 <com.hbb20.CountryCodePicker
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="5dp"
                     app:ccp_autoDetectCountry="true"
                     app:ccp_showFlag="true"
                     app:ccp_showNameCode="true"
                     app:ccp_showFullName="true"
                     android:layout_marginTop="12dp"
+                    app:ccp_contentColor="@color/white"
+                    app:ccp_textGravity="LEFT"
+                    app:ccpDialog_textColor="@color/white"
                     android:background="@drawable/yellow_boder"/>
 
 

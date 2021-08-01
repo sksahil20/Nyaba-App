@@ -16,7 +16,7 @@ public class WellDone extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_well_done);
 
-        backToDash = findViewById(R.id.pass_reset_success_back_btn);
+        backToDash = findViewById(R.id.back_to_dash_btn);
         backToDash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

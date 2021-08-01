@@ -79,7 +79,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
             <android.widget.Button
-                android:id="@+id/finish"
+                android:id="@+id/finishBtn"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
@@ -90,7 +90,6 @@
                 android:textColor="@color/white"
                 android:textSize="19sp"
                 android:textStyle="bold"
-                android:onClick="finish"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
