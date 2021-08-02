@@ -154,14 +154,14 @@ public class Front_Scan extends AppCompatActivity {
         TextureView scanner= findViewById(R.id.view_finder);
         scanner.setVisibility(view.INVISIBLE);
 
-        android.widget.Button scanNow=findViewById(R.id.imgCapture_again);
-        scanNow.setVisibility(View.VISIBLE);
+        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+        scanAgain.setVisibility(View.VISIBLE);
 
         ImageView scannedImg= findViewById(R.id.imageView5);
         scannedImg.setVisibility(view.VISIBLE);
 
-        android.widget.Button ScanNow =findViewById(R.id.imgCapture_again);
-        ScanNow.setVisibility(View.VISIBLE);
+        android.widget.Button ScanNow =findViewById(R.id.imgCapture_front);
+        ScanNow.setVisibility(View.INVISIBLE);
 
         android.widget.Button next=findViewById(R.id.next);
         next.setVisibility(View.VISIBLE);

@@ -39,7 +39,7 @@ public class back_scan extends AppCompatActivity {
         setContentView(R.layout.activity_back_scan);
         textureView = findViewById(R.id.view_finder);
 
-        ImageView scannedImg= findViewById(R.id.imageView5);
+        ImageView scannedImg= findViewById(R.id.imageView6);
         scannedImg.setVisibility(View.INVISIBLE);
 
         android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
@@ -130,7 +130,7 @@ public class back_scan extends AppCompatActivity {
 
     public void readImgFromFile(View view)
     {
-        ImageView scannedImg= findViewById(R.id.imageView5);
+        ImageView scannedImg= findViewById(R.id.imageView6);
         scannedImg.setVisibility(view.VISIBLE);
 
         File imgFile = new  File(getFilesDir()+"/Nyaba.jpg");
@@ -146,17 +146,22 @@ public class back_scan extends AppCompatActivity {
         TextureView scanner= findViewById(R.id.view_finder);
         scanner.setVisibility(view.INVISIBLE);
 
-        android.widget.Button scanNow=findViewById(R.id.imgCapture_again);
-        scanNow.setVisibility(View.VISIBLE);
+        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+        scanAgain.setVisibility(View.INVISIBLE);
 
-        ImageView scannedImg= findViewById(R.id.imageView5);
+        ImageView scannedImg= findViewById(R.id.imageView6);
         scannedImg.setVisibility(view.VISIBLE);
 
-        android.widget.Button ScanNow =findViewById(R.id.imgCapture_again);
+        android.widget.Button ScanNow =findViewById(R.id.imgCapture_back);
         ScanNow.setVisibility(View.VISIBLE);
 
         android.widget.Button next=findViewById(R.id.next);
         next.setVisibility(View.VISIBLE);
+    }
+    public void next(View view) {
+        Intent myIntent = new Intent(back_scan.this,scanned_copy.class);
+        back_scan.this.startActivity(myIntent);
+        finish();
     }
 
     @Override
