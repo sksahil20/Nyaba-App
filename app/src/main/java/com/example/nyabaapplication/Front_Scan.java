@@ -16,6 +16,7 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Rational;
 import android.util.Size;
@@ -105,6 +106,7 @@ public class Front_Scan extends AppCompatActivity {
                         String msg = "Pic captured at " + file.getAbsolutePath();
                         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
                         layoutChangesAfterScanning(v);
+                        readImgFromFile(v);
                     }
 
 
@@ -126,8 +128,14 @@ public class Front_Scan extends AppCompatActivity {
     public void readImgFromFile(View view)
     {
         ImageView scannedImg= findViewById(R.id.imageView5);
-//        scannedImg.setImageBitmap(myBitmap);
         scannedImg.setVisibility(view.VISIBLE);
+
+        File imgFile = new  File(getFilesDir()+"/Nyaba.jpg");
+        if(imgFile.exists())
+        {
+            scannedImg.setImageURI(Uri.fromFile(imgFile));
+
+        }
     }
 
     public void next(View view) {
