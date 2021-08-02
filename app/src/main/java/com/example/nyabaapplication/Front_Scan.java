@@ -39,6 +39,13 @@ public class Front_Scan extends AppCompatActivity {
 
         ImageView scannedImg= findViewById(R.id.imageView5);
         scannedImg.setVisibility(View.INVISIBLE);
+
+        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+        scanAgain.setVisibility(View.INVISIBLE);
+
+        android.widget.Button next=findViewById(R.id.next);
+        next.setVisibility(View.INVISIBLE);
+
         if(allPermissionGranted()) {
             startCamera();
         }
@@ -108,9 +115,19 @@ public class Front_Scan extends AppCompatActivity {
     public void scan(View view)
     {
         TextureView scanner= findViewById(R.id.view_finder);
-        ImageView scannedImg= findViewById(R.id.imageView5);
         scanner.setVisibility(view.INVISIBLE);
+
+        android.widget.Button scanNow=findViewById(R.id.imgCapture_again);
+        scanNow.setVisibility(View.VISIBLE);
+
+        ImageView scannedImg= findViewById(R.id.imageView5);
         scannedImg.setVisibility(view.VISIBLE);
+
+        android.widget.Button ScanNow =findViewById(R.id.imgCapture_again);
+        ScanNow.setVisibility(View.VISIBLE);
+
+        android.widget.Button next=findViewById(R.id.next);
+        next.setVisibility(View.VISIBLE);
     }
 
     public void next(View view) {
