@@ -104,7 +104,9 @@ public class Front_Scan extends AppCompatActivity {
                     public void onImageSaved(@NonNull File file) {
                         String msg = "Pic captured at " + file.getAbsolutePath();
                         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+                        layoutChangesAfterScanning(v);
                     }
+
 
                     @Override
                     public void onError(@NonNull ImageCapture.UseCaseError useCaseError, @NonNull String message, Throwable cause) {
@@ -120,9 +122,12 @@ public class Front_Scan extends AppCompatActivity {
         CameraX.bindToLifecycle((LifecycleOwner) this, preview, imgCap);
     }
 
-    public void scan(View view)
+
+    public void readImgFromFile(View view)
     {
-        layoutChangesAfterScanning(view);
+        ImageView scannedImg= findViewById(R.id.imageView5);
+//        scannedImg.setImageBitmap(myBitmap);
+        scannedImg.setVisibility(view.VISIBLE);
     }
 
     public void next(View view) {
