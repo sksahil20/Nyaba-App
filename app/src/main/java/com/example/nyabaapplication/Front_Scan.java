@@ -16,8 +16,10 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Rational;
 import android.util.Size;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Front_Scan extends AppCompatActivity {
@@ -27,12 +29,16 @@ public class Front_Scan extends AppCompatActivity {
             "android.permission.WRITE_EXTERNAL_STORAGE"};
     AutoFitTextureView textureView;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_scan);
-
         textureView = findViewById(R.id.view_finder);
+
+        ImageView scannedImg= findViewById(R.id.imageView5);
+        scannedImg.setVisibility(View.INVISIBLE);
         if(allPermissionGranted()) {
             startCamera();
         }
@@ -99,7 +105,15 @@ public class Front_Scan extends AppCompatActivity {
         CameraX.bindToLifecycle((LifecycleOwner) this, preview, imgCap);
     }
 
-    public void scan(View view) {
+    public void scan(View view)
+    {
+        TextureView scanner= findViewById(R.id.view_finder);
+        ImageView scannedImg= findViewById(R.id.imageView5);
+        scanner.setVisibility(view.INVISIBLE);
+        scannedImg.setVisibility(view.VISIBLE);
+    }
+
+    public void next(View view) {
         Intent myIntent = new Intent(Front_Scan.this,back_scan.class);
         Front_Scan.this.startActivity(myIntent);
         finish();
