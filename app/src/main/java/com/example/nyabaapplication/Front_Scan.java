@@ -151,6 +151,7 @@ public class Front_Scan extends AppCompatActivity {
     public void scanAgain(View view) {
        clearMyFiles();
        onCreateLayouts();
+       layoutAfterScanAgain();
     }
 
     public void onCreateLayouts()
@@ -164,6 +165,15 @@ public class Front_Scan extends AppCompatActivity {
         android.widget.Button next=findViewById(R.id.next);
         next.setVisibility(View.INVISIBLE);
 
+    }
+
+    public void layoutAfterScanAgain()
+    {
+        TextureView scanner= findViewById(R.id.view_finder);
+        scanner.setVisibility(View.VISIBLE);
+
+        android.widget.Button ScanNow =findViewById(R.id.imgCapture_front);
+        ScanNow.setVisibility(View.VISIBLE);
     }
 
     public void layoutChangesAfterScanning()
