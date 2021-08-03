@@ -38,15 +38,9 @@ public class back_scan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back_scan);
         textureView = findViewById(R.id.view_finder);
+        onCreateLayout();
 
-        ImageView scannedImg= findViewById(R.id.imageView6);
-        scannedImg.setVisibility(View.INVISIBLE);
 
-        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
-        scanAgain.setVisibility(View.INVISIBLE);
-
-        android.widget.Button next=findViewById(R.id.next);
-        next.setVisibility(View.INVISIBLE);
         if(allPermissionGranted()) {
             startCamera();
         }
@@ -141,27 +135,63 @@ public class back_scan extends AppCompatActivity {
         }
     }
 
-    public void layoutChangesAfterScanning(View view)
-    {
-        TextureView scanner= findViewById(R.id.view_finder);
-        scanner.setVisibility(view.INVISIBLE);
-
-        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
-        scanAgain.setVisibility(View.INVISIBLE);
-
-        ImageView scannedImg= findViewById(R.id.imageView6);
-        scannedImg.setVisibility(view.VISIBLE);
-
-        android.widget.Button ScanNow =findViewById(R.id.imgCapture_back);
-        ScanNow.setVisibility(View.VISIBLE);
-
-        android.widget.Button next=findViewById(R.id.next);
-        next.setVisibility(View.VISIBLE);
+    void clearMyFiles() {
+        File imgFile = new File(getFilesDir() + "/Nyaba.document.back.jpg");
+        if (imgFile != null) {
+            imgFile.delete();
+        }
     }
+
+    public void scanAgain(View view) {
+        clearMyFiles();
+        onCreateLayout();
+        layoutAfterScanAgain();
+    }
+
     public void next(View view) {
         Intent myIntent = new Intent(back_scan.this,scanned_copy.class);
         back_scan.this.startActivity(myIntent);
         finish();
+    }
+
+    public void layoutChangesAfterScanning(View view)
+    {
+        TextureView scanner= findViewById(R.id.view_finder);
+        scanner.setVisibility(View.INVISIBLE);
+
+        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+        scanAgain.setVisibility(View.VISIBLE);
+
+        ImageView scannedImg= findViewById(R.id.imageView6);
+        scannedImg.setVisibility(View.VISIBLE);
+
+        android.widget.Button ScanNow =findViewById(R.id.imgCapture_back);
+        ScanNow.setVisibility(View.INVISIBLE);
+
+        android.widget.Button next=findViewById(R.id.next);
+        next.setVisibility(View.VISIBLE);
+    }
+
+    public void onCreateLayout()
+    {
+        ImageView scannedImg= findViewById(R.id.imageView6);
+        scannedImg.setVisibility(View.INVISIBLE);
+
+        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+        scanAgain.setVisibility(View.INVISIBLE);
+
+        android.widget.Button next=findViewById(R.id.next);
+        next.setVisibility(View.INVISIBLE);
+    }
+
+    public void layoutAfterScanAgain()
+    {
+        TextureView scanner= findViewById(R.id.view_finder);
+        scanner.setVisibility(View.VISIBLE);
+
+        android.widget.Button scanNow=findViewById(R.id.imgCapture_again);
+        scanNow.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
