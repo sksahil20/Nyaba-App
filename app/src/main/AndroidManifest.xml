@@ -17,11 +17,6 @@
         <activity android:name=".scanned_copy" />
         <activity android:name=".WellDone" />
         <activity android:name=".Front_Scan" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".back_scan"/>
         <activity android:name=".DocVerify" />
@@ -34,7 +29,15 @@
         <activity android:name=".OnBoarding" />
         <activity android:name=".LoginMain" />
         <activity android:name=".Login" />
-        <activity android:name=".MainActivity" />
+
+        <activity android:name=".MainActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
