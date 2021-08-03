@@ -30,19 +30,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        picker1 = findViewById(R.id.numberpicker_main_picker);
-        picker1.setMaxValue(4);
-        picker1.setMinValue(0);
-        pickerVals = new String[]{"1", "2", "3", "4", "5"};
-        picker1.setDisplayedValues(pickerVals);
-
-        picker1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                int valuePicker1 = picker1.getValue();
-                Log.d("picker value", pickerVals[valuePicker1]);
-            }
-        });
-
+        NumberPicker picker = findViewById(R.id.numberpicker_main_picker);
+        picker.setMaxValue(20);
+        picker.setMinValue(1);
     }
 }

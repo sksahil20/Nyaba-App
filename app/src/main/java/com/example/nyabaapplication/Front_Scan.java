@@ -11,14 +11,24 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Rational;
 import android.util.Size;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Front_Scan extends AppCompatActivity {
 
@@ -27,12 +37,23 @@ public class Front_Scan extends AppCompatActivity {
             "android.permission.WRITE_EXTERNAL_STORAGE"};
     AutoFitTextureView textureView;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_scan);
-
         textureView = findViewById(R.id.view_finder);
+
+        ImageView scannedImg= findViewById(R.id.imageView5);
+        scannedImg.setVisibility(View.INVISIBLE);
+
+        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+        scanAgain.setVisibility(View.INVISIBLE);
+
+        android.widget.Button next=findViewById(R.id.next);
+        next.setVisibility(View.INVISIBLE);
+
         if(allPermissionGranted()) {
             startCamera();
         }
@@ -74,32 +95,50 @@ public class Front_Scan extends AppCompatActivity {
         ImageCaptureConfig imageCaptureConfig = new ImageCaptureConfig.Builder().setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
                 .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).build();
         final ImageCapture imgCap = new ImageCapture(imageCaptureConfig);
-//        findViewById(R.id.imgCapture_front).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                File file = new File(/*Environment.getExternalStorageDirectory()*/ "/sdcard/photos/DCIM(0)/Camera/CameraX_" + System.currentTimeMillis() + ".jpg");
-//                imgCap.takePicture(file, new ImageCapture.OnImageSavedListener() {
-//                    @Override
-//                    public void onImageSaved(@NonNull File file) {
-//                        String msg = "Pic captured at " + file.getAbsolutePath();
-//                        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull ImageCapture.UseCaseError useCaseError, @NonNull String message, @Nullable Throwable cause) {
-//                        String msg = "Pic capture failed : " + message;
-//                        Toast.makeText(getBaseContext(), msg,Toast.LENGTH_LONG).show();
-//                        if(cause != null){
-//                            cause.printStackTrace();
-//                        }
-//                    }
-//                });
-//            }
-//        });
+        findViewById(R.id.imgCapture_front).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                File file = new File(getFilesDir()+"/Nyaba.jpg");
+
+                imgCap.takePicture(file, new ImageCapture.OnImageSavedListener() {
+                    @Override
+                    public void onImageSaved(@NonNull File file) {
+                        String msg = "Pic captured at " + file.getAbsolutePath();
+                        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+                        layoutChangesAfterScanning(v);
+                        readImgFromFile(v);
+                    }
+
+
+                    @Override
+                    public void onError(@NonNull ImageCapture.UseCaseError useCaseError, @NonNull String message, Throwable cause) {
+                        String msg = "Pic capture failed : " + message;
+                        Toast.makeText(getBaseContext(), msg,Toast.LENGTH_LONG).show();
+                        if(cause != null){
+                            cause.printStackTrace();
+                        }
+                    }
+               });
+            }
+        });
         CameraX.bindToLifecycle((LifecycleOwner) this, preview, imgCap);
     }
 
-    public void scan(View view) {
+
+    public void readImgFromFile(View view)
+    {
+        ImageView scannedImg= findViewById(R.id.imageView5);
+        scannedImg.setVisibility(view.VISIBLE);
+
+        File imgFile = new  File(getFilesDir()+"/Nyaba.jpg");
+        if(imgFile.exists())
+        {
+            scannedImg.setImageURI(Uri.fromFile(imgFile));
+
+        }
+    }
+
+    public void next(View view) {
         Intent myIntent = new Intent(Front_Scan.this,back_scan.class);
         Front_Scan.this.startActivity(myIntent);
         finish();
@@ -108,6 +147,24 @@ public class Front_Scan extends AppCompatActivity {
         Intent myIntent = new Intent(Front_Scan.this, DocVerify.class);
         Front_Scan.this.startActivity(myIntent);
         finish();
+    }
+
+    public void layoutChangesAfterScanning(View view)
+    {
+        TextureView scanner= findViewById(R.id.view_finder);
+        scanner.setVisibility(view.INVISIBLE);
+
+        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+        scanAgain.setVisibility(View.VISIBLE);
+
+        ImageView scannedImg= findViewById(R.id.imageView5);
+        scannedImg.setVisibility(view.VISIBLE);
+
+        android.widget.Button ScanNow =findViewById(R.id.imgCapture_front);
+        ScanNow.setVisibility(View.INVISIBLE);
+
+        android.widget.Button next=findViewById(R.id.next);
+        next.setVisibility(View.VISIBLE);
     }
 
     @Override

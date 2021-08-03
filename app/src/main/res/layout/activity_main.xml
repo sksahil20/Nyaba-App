@@ -8,11 +8,10 @@
     tools:context=".MainActivity">
 
 
-
     <FrameLayout
         android:id="@+id/frameLayout2"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="2dp"
         android:background="@drawable/dashboard_pic_background"
@@ -24,8 +23,8 @@
         app:layout_constraintVertical_bias="0.104" />
 
     <ImageView
-        android:layout_width="175dp"
-        android:layout_height="175dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:background="@drawable/yellow_round"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout2"
         app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
@@ -46,39 +45,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
-                android:background="@drawable/white_rounder"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </LinearLayout>
-
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:text="Info"
-                android:textAlignment="center"
-                android:textColor="@color/yellow"
+                android:text="Name"
+                android:textColor="@color/light_yellow"
                 android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="200dp"
+                android:layout_width="250dp"
                 android:layout_height="55dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_yellow_button"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-                app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView22"></LinearLayout>
 
             <TextView
                 android:id="@+id/textView19"
@@ -88,21 +75,21 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
                 app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
 
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:text="Select day"
                 android:textColor="@color/light_gray"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
             <CalendarView
                 android:id="@+id/calendarView"
@@ -131,18 +118,19 @@
             <NumberPicker
                 android:id="@+id/numberpicker_main_picker"
                 android:layout_width="200dp"
-                android:layout_height="59dp"
+                android:layout_height="110dp"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="@color/light_yellow"
-                android:baselineAligned="true"
-                android:fadeScrollbars="false"
-                android:scrollbarThumbHorizontal="@color/light_yellow"
-                android:solidColor="@color/dark_gray"
                 android:theme="@style/AppTheme.Picker"
+
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView21"></NumberPicker>
+                app:layout_constraintTop_toBottomOf="@+id/textView21"
+                app:layout_constraintHorizontal_chainStyle="packed"></NumberPicker>
 
             <android.widget.Button
                 android:id="@+id/book_now_btn"
@@ -167,19 +155,5 @@
 
 
     </ScrollView>
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="175dp"
-        android:text="Name"
-        android:textColor="@color/light_yellow"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
