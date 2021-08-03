@@ -44,16 +44,7 @@ public class Front_Scan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_scan);
         textureView = findViewById(R.id.view_finder);
-
-        ImageView scannedImg= findViewById(R.id.imageView5);
-        scannedImg.setVisibility(View.INVISIBLE);
-
-        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
-        scanAgain.setVisibility(View.INVISIBLE);
-
-        android.widget.Button next=findViewById(R.id.next);
-        next.setVisibility(View.INVISIBLE);
-
+        onCreateLayouts();
         if(allPermissionGranted()) {
             startCamera();
         }
@@ -98,14 +89,14 @@ public class Front_Scan extends AppCompatActivity {
         findViewById(R.id.imgCapture_front).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = new File(getFilesDir()+"/Nyaba.jpg");
+                File file = new File(getFilesDir()+"/Nyaba.documnet.front.jpg");
 
                 imgCap.takePicture(file, new ImageCapture.OnImageSavedListener() {
                     @Override
                     public void onImageSaved(@NonNull File file) {
                         String msg = "Pic captured at " + file.getAbsolutePath();
                         Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-                        layoutChangesAfterScanning(v);
+                        layoutChangesAfterScanning();
                         readImgFromFile(v);
                     }
 
@@ -130,7 +121,7 @@ public class Front_Scan extends AppCompatActivity {
         ImageView scannedImg= findViewById(R.id.imageView5);
         scannedImg.setVisibility(view.VISIBLE);
 
-        File imgFile = new  File(getFilesDir()+"/Nyaba.jpg");
+        File imgFile = new  File(getFilesDir()+"/Nyaba_f.jpg");
         if(imgFile.exists())
         {
             scannedImg.setImageURI(Uri.fromFile(imgFile));
@@ -138,7 +129,15 @@ public class Front_Scan extends AppCompatActivity {
         }
     }
 
-    public void next(View view) {
+    void clearMyFiles() {
+        File imgFile = new File(getFilesDir() + "/Nyaba.documnet.front.jpg");
+        if (imgFile != null) {
+            imgFile.delete();
+        }
+    }
+
+
+        public void next(View view) {
         Intent myIntent = new Intent(Front_Scan.this,back_scan.class);
         Front_Scan.this.startActivity(myIntent);
         finish();
@@ -149,16 +148,34 @@ public class Front_Scan extends AppCompatActivity {
         finish();
     }
 
-    public void layoutChangesAfterScanning(View view)
+    public void scanAgain(View view) {
+       clearMyFiles();
+       onCreateLayouts();
+    }
+
+    public void onCreateLayouts()
+    {
+        ImageView scannedImg= findViewById(R.id.imageView5);
+        scannedImg.setVisibility(View.INVISIBLE);
+
+        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+        scanAgain.setVisibility(View.INVISIBLE);
+
+        android.widget.Button next=findViewById(R.id.next);
+        next.setVisibility(View.INVISIBLE);
+
+    }
+
+    public void layoutChangesAfterScanning()
     {
         TextureView scanner= findViewById(R.id.view_finder);
-        scanner.setVisibility(view.INVISIBLE);
+        scanner.setVisibility(View.INVISIBLE);
 
         android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
         scanAgain.setVisibility(View.VISIBLE);
 
         ImageView scannedImg= findViewById(R.id.imageView5);
-        scannedImg.setVisibility(view.VISIBLE);
+        scannedImg.setVisibility(View.VISIBLE);
 
         android.widget.Button ScanNow =findViewById(R.id.imgCapture_front);
         ScanNow.setVisibility(View.INVISIBLE);

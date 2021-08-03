@@ -10,9 +10,6 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 
 public class MainActivity extends AppCompatActivity {
-
-    NumberPicker picker1;
-    String[] pickerVals;
     Button bookNowBtn;
 
     @Override

@@ -103,7 +103,7 @@ public class back_scan extends AppCompatActivity {
         findViewById(R.id.imgCapture_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = new File(getFilesDir()+"/Nyaba.jpg");
+                File file = new File(getFilesDir()+"/Nyaba.document.back.jpg");
 
                 imgCap.takePicture(file, new ImageCapture.OnImageSavedListener() {
                     @Override
@@ -133,7 +133,7 @@ public class back_scan extends AppCompatActivity {
         ImageView scannedImg= findViewById(R.id.imageView6);
         scannedImg.setVisibility(view.VISIBLE);
 
-        File imgFile = new  File(getFilesDir()+"/Nyaba.jpg");
+        File imgFile = new  File(getFilesDir()+"/Nyaba.document.back.jpg");
         if(imgFile.exists())
         {
             scannedImg.setImageURI(Uri.fromFile(imgFile));
