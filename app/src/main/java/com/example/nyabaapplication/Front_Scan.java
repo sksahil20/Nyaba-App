@@ -36,6 +36,7 @@ public class Front_Scan extends AppCompatActivity {
     private String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA",
             "android.permission.WRITE_EXTERNAL_STORAGE"};
     AutoFitTextureView textureView;
+    String storeFrontScan="Nyaba.document.front.jpg";
 
 
 
@@ -89,7 +90,7 @@ public class Front_Scan extends AppCompatActivity {
         findViewById(R.id.imgCapture_front).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = new File(getFilesDir()+"/Nyaba.documnet.front.jpg");
+                File file = new File(getFilesDir()+storeFrontScan);
 
                 imgCap.takePicture(file, new ImageCapture.OnImageSavedListener() {
                     @Override
@@ -121,7 +122,7 @@ public class Front_Scan extends AppCompatActivity {
         ImageView scannedImg= findViewById(R.id.imageView5);
         scannedImg.setVisibility(view.VISIBLE);
 
-        File imgFile = new  File(getFilesDir()+"/Nyaba_f.jpg");
+        File imgFile = new  File(getFilesDir()+storeFrontScan);
         if(imgFile.exists())
         {
             scannedImg.setImageURI(Uri.fromFile(imgFile));
@@ -130,7 +131,7 @@ public class Front_Scan extends AppCompatActivity {
     }
 
     void clearMyFiles() {
-        File imgFile = new File(getFilesDir() + "/Nyaba.documnet.front.jpg");
+        File imgFile = new File(getFilesDir() + storeFrontScan);
         if (imgFile != null) {
             imgFile.delete();
         }

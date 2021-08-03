@@ -14,6 +14,8 @@ import java.io.File;
 public class scanned_copy extends AppCompatActivity {
 
     Button finishBtn;
+    String storeFrontScan="Nyaba.document.front.jpg";
+    String storeBackScan="Nyaba.document.back.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class scanned_copy extends AppCompatActivity {
     {
         ImageView scannedImg= findViewById(R.id.imageView3);
         scannedImg.setVisibility(View.VISIBLE);
-        File imgFile = new  File(getFilesDir()+"/Nyaba.documnet.front.jpg");
+        File imgFile = new  File(getFilesDir()+storeFrontScan);
         if(imgFile.exists())
         {
             scannedImg.setImageURI(Uri.fromFile(imgFile));
@@ -54,7 +56,7 @@ public class scanned_copy extends AppCompatActivity {
     {
         ImageView scannedImg= findViewById(R.id.imageView4);
         scannedImg.setVisibility(View.VISIBLE);
-        File imgFile = new  File(getFilesDir()+"/Nyaba.document.back.jpg");
+        File imgFile = new  File(getFilesDir()+storeBackScan);
         if(imgFile.exists())
         {
             scannedImg.setImageURI(Uri.fromFile(imgFile));

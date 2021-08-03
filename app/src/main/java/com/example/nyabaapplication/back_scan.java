@@ -32,6 +32,7 @@ public class back_scan extends AppCompatActivity {
     private String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA",
             "android.permission.WRITE_EXTERNAL_STORAGE"};
     AutoFitTextureView textureView;
+    String storeBackScan="Nyaba.document.back.jpg";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class back_scan extends AppCompatActivity {
         findViewById(R.id.imgCapture_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = new File(getFilesDir()+"/Nyaba.document.back.jpg");
+                File file = new File(getFilesDir()+storeBackScan);
 
                 imgCap.takePicture(file, new ImageCapture.OnImageSavedListener() {
                     @Override
@@ -127,7 +128,7 @@ public class back_scan extends AppCompatActivity {
         ImageView scannedImg= findViewById(R.id.imageView6);
         scannedImg.setVisibility(view.VISIBLE);
 
-        File imgFile = new  File(getFilesDir()+"/Nyaba.document.back.jpg");
+        File imgFile = new  File(getFilesDir()+storeBackScan);
         if(imgFile.exists())
         {
             scannedImg.setImageURI(Uri.fromFile(imgFile));
@@ -136,10 +137,9 @@ public class back_scan extends AppCompatActivity {
     }
 
     void clearMyFiles() {
-        File imgFile = new File(getFilesDir() + "/Nyaba.document.back.jpg");
-        if (imgFile != null) {
-            imgFile.delete();
-        }
+        File imgFile = new File(getFilesDir() +storeBackScan);
+        imgFile.delete();
+
     }
 
     public void scanAgain(View view) {
@@ -190,7 +190,7 @@ public class back_scan extends AppCompatActivity {
         scanner.setVisibility(View.VISIBLE);
 
         android.widget.Button scanNow=findViewById(R.id.imgCapture_again);
-        scanNow.setVisibility(View.INVISIBLE);
+        scanNow.setVisibility(View.VISIBLE);
 
     }
 
