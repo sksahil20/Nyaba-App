@@ -11,11 +11,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
-import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Rational;
@@ -27,8 +24,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class Front_Scan extends AppCompatActivity {
 
@@ -119,7 +114,7 @@ public class Front_Scan extends AppCompatActivity {
 
     public void readImgFromFile(View view)
     {
-        ImageView scannedImg= findViewById(R.id.imageView5);
+        ImageView scannedImg= findViewById(R.id.scannedFrontImage);
         scannedImg.setVisibility(view.VISIBLE);
 
         File imgFile = new  File(getFilesDir()+storeFrontScan);
@@ -157,7 +152,7 @@ public class Front_Scan extends AppCompatActivity {
 
     public void onCreateLayouts()
     {
-        ImageView scannedImg= findViewById(R.id.imageView5);
+        ImageView scannedImg= findViewById(R.id.scannedFrontImage);
         scannedImg.setVisibility(View.INVISIBLE);
 
         android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
@@ -185,7 +180,7 @@ public class Front_Scan extends AppCompatActivity {
         android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
         scanAgain.setVisibility(View.VISIBLE);
 
-        ImageView scannedImg= findViewById(R.id.imageView5);
+        ImageView scannedImg= findViewById(R.id.scannedFrontImage);
         scannedImg.setVisibility(View.VISIBLE);
 
         android.widget.Button ScanNow =findViewById(R.id.imgCapture_front);
