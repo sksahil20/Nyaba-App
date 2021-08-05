@@ -1,7 +1,6 @@
 package com.example.nyabaapplication;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraX;
 import androidx.camera.core.ImageCapture;
@@ -38,7 +37,7 @@ public class back_scan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back_scan);
-        textureView = findViewById(R.id.view_finder);
+        textureView = findViewById(R.id.frontScanner);
         onCreateLayout();
 
 
@@ -156,7 +155,7 @@ public class back_scan extends AppCompatActivity {
 
     public void layoutChangesAfterScanning(View view)
     {
-        TextureView scanner= findViewById(R.id.view_finder);
+        TextureView scanner= findViewById(R.id.frontScanner);
         scanner.setVisibility(View.INVISIBLE);
 
         android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
@@ -186,7 +185,7 @@ public class back_scan extends AppCompatActivity {
 
     public void layoutAfterScanAgain()
     {
-        TextureView scanner= findViewById(R.id.view_finder);
+        TextureView scanner= findViewById(R.id.frontScanner);
         scanner.setVisibility(View.VISIBLE);
 
         android.widget.Button scanNow=findViewById(R.id.imgCapture_again);

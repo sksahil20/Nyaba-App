@@ -21,6 +21,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -32,14 +33,23 @@ public class Front_Scan extends AppCompatActivity {
             "android.permission.WRITE_EXTERNAL_STORAGE"};
     AutoFitTextureView textureView;
     String storeFrontScan="Nyaba.document.front.jpg";
-
+    android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
+    ImageView scannedImg= findViewById(R.id.scannedFrontImage);
+    android.widget.Button ScanNow =findViewById(R.id.imgCapture_front);
+    android.widget.Button next=findViewById(R.id.next);
+    TextView frontText=findViewById(R.id.frontScanText);
+    ImageView backArrow=findViewById(R.id.imageView_back_arrow);
+    TextView frontScanText=findViewById(R.id.frontSide);
+    ImageView idFront=findViewById(R.id.idFront);
+    android.widget.Button startScan=findViewById(R.id.startScan);
+    TextureView scanner= findViewById(R.id.frontScanner);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_scan);
-        textureView = findViewById(R.id.view_finder);
+        textureView = findViewById(R.id.frontScanner);
         onCreateLayouts();
         if(allPermissionGranted()) {
             startCamera();
@@ -114,7 +124,6 @@ public class Front_Scan extends AppCompatActivity {
 
     public void readImgFromFile(View view)
     {
-        ImageView scannedImg= findViewById(R.id.scannedFrontImage);
         scannedImg.setVisibility(view.VISIBLE);
 
         File imgFile = new  File(getFilesDir()+storeFrontScan);
@@ -144,6 +153,17 @@ public class Front_Scan extends AppCompatActivity {
         finish();
     }
 
+    public void startScan(View view) {
+        scanner.setVisibility(View.VISIBLE);
+        ScanNow.setVisibility(View.VISIBLE);
+
+        startScan.setVisibility(View.INVISIBLE);
+        frontText.setVisibility(View.INVISIBLE);
+        backArrow.setVisibility(View.INVISIBLE);
+        frontScanText.setVisibility(View.INVISIBLE);
+
+    }
+
     public void scanAgain(View view) {
        clearMyFiles();
        onCreateLayouts();
@@ -152,42 +172,27 @@ public class Front_Scan extends AppCompatActivity {
 
     public void onCreateLayouts()
     {
-        ImageView scannedImg= findViewById(R.id.scannedFrontImage);
+        scanner.setVisibility(View.INVISIBLE);
         scannedImg.setVisibility(View.INVISIBLE);
-
-        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
         scanAgain.setVisibility(View.INVISIBLE);
-
-        android.widget.Button next=findViewById(R.id.next);
         next.setVisibility(View.INVISIBLE);
-
+        idFront.setVisibility(View.INVISIBLE);
+        ScanNow.setVisibility(View.INVISIBLE);
     }
 
     public void layoutAfterScanAgain()
     {
-        TextureView scanner= findViewById(R.id.view_finder);
-        scanner.setVisibility(View.VISIBLE);
-
-        android.widget.Button ScanNow =findViewById(R.id.imgCapture_front);
-        ScanNow.setVisibility(View.VISIBLE);
+       scanner.setVisibility(View.VISIBLE);
+       ScanNow.setVisibility(View.VISIBLE);
     }
 
     public void layoutChangesAfterScanning()
     {
-        TextureView scanner= findViewById(R.id.view_finder);
-        scanner.setVisibility(View.INVISIBLE);
-
-        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
-        scanAgain.setVisibility(View.VISIBLE);
-
-        ImageView scannedImg= findViewById(R.id.scannedFrontImage);
-        scannedImg.setVisibility(View.VISIBLE);
-
-        android.widget.Button ScanNow =findViewById(R.id.imgCapture_front);
-        ScanNow.setVisibility(View.INVISIBLE);
-
-        android.widget.Button next=findViewById(R.id.next);
-        next.setVisibility(View.VISIBLE);
+       scanner.setVisibility(View.INVISIBLE);
+       scanAgain.setVisibility(View.VISIBLE);
+       scannedImg.setVisibility(View.VISIBLE);
+       ScanNow.setVisibility(View.INVISIBLE);
+       next.setVisibility(View.VISIBLE);
     }
 
     @Override

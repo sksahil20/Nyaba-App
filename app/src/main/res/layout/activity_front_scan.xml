@@ -30,16 +30,16 @@
         android:layout_height="47dp"
         android:layout_gravity="center_horizontal"
         android:onClick="arrow"
-        app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintEnd_toStartOf="@+id/textView9"
+        app:layout_constraintBottom_toBottomOf="@+id/frontSide"
+        app:layout_constraintEnd_toStartOf="@+id/frontSide"
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/frontSide"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_arrow_left_24" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/frontSide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -50,6 +50,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/idFront"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/scannedFrontImage"
+        app:layout_constraintEnd_toEndOf="@+id/scannedFrontImage"
+        app:layout_constraintHorizontal_bias="0.402"
+        app:layout_constraintStart_toStartOf="@+id/scannedFrontImage"
+        app:layout_constraintTop_toTopOf="@+id/scannedFrontImage"
+        app:srcCompat="@drawable/id_front" />
 
     <android.widget.Button
         android:id="@+id/imgCapture_front"
@@ -65,7 +78,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/frontScanText"
+        app:layout_constraintVertical_bias="0.493" />
+
+    <android.widget.Button
+        android:id="@+id/startScan"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style_ylo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="startScan"
+        android:text="Scan Now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frontScanText"
         app:layout_constraintVertical_bias="0.493" />
 
     <android.widget.Button
@@ -83,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/frontScanText"
         app:layout_constraintVertical_bias="0.493" />
 
     <android.widget.Button
@@ -105,7 +136,7 @@
 
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/frontScanText"
         android:layout_width="332dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="360dp"
@@ -116,10 +147,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/frontSide" />
 
     <com.example.nyabaapplication.AutoFitTextureView
-        android:id="@+id/view_finder"
+        android:id="@+id/frontScanner"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -132,10 +163,10 @@
         android:layout_width="350dp"
         android:layout_height="250dp"
         android:background="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/textView11"
-        app:layout_constraintEnd_toEndOf="@+id/view_finder"
-        app:layout_constraintStart_toStartOf="@+id/view_finder"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintBottom_toTopOf="@+id/frontScanText"
+        app:layout_constraintEnd_toEndOf="@+id/frontScanner"
+        app:layout_constraintStart_toStartOf="@+id/frontScanner"
+        app:layout_constraintTop_toBottomOf="@+id/frontSide"
         tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
