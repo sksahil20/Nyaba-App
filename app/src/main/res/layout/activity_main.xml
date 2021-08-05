@@ -1,185 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
     android:background="@color/background"
     tools:context=".MainActivity">
 
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lay_rel_img"
+        android:layout_gravity="center_horizontal"
+        android:padding="15dp"
+        android:gravity="center"
+        android:background="@drawable/bg_cir_ylo">
 
-    <FrameLayout
-        android:id="@+id/frameLayout2"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:id="@+id/updateUserImg"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/main_log_img" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/TV_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textStyle="normal"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/light_yellow"
+        android:layout_marginTop="10dp"/>
+
+    <android.widget.Button
         android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="2dp"
-        android:background="@drawable/dashboard_pic_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/button_style_ylo"
+        android:text="Booking"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:textStyle="normal" />
 
-    <ImageView
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:background="@drawable/yellow_round"
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/frameLayout2"
-        app:layout_constraintStart_toStartOf="@+id/frameLayout2"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select day"
+        android:textSize="17sp"
+        android:textColor="@color/light_gray"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"/>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="15dp"
+        app:cardBackgroundColor="@color/primary_gray"
+        android:layout_gravity="center_horizontal"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
 
     <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="0dp"
-        android:layout_height="350dp"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
-                android:background="@drawable/white_rounder"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                <CalendarView
+                    android:id="@+id/calendarView_DS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:backgroundTint="@color/green"
+                    android:dateTextAppearance="@style/CalenderViewDateCustomText"
+                    android:focusableInTouchMode="false"
+                    android:theme="@style/CalenderViewCustom"
+                    android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:text="Info"
-                android:textAlignment="center"
-                android:textColor="@color/yellow"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout"
-                app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="200dp"
-                android:layout_height="55dp"
-                android:background="@drawable/rounded_yellow_button"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-                app:layout_constraintTop_toTopOf="parent"></LinearLayout>
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Booking"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:text="Select day"
-                android:textColor="@color/light_gray"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="359dp"
-                android:layout_height="229dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/green"
-                android:dateTextAppearance="@style/CalenderViewDateCustomText"
-                android:focusableInTouchMode="false"
-                android:theme="@style/CalenderViewCustom"
-                android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
-                app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="Select Number Of Umra"
-                android:textColor="@color/light_gray"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
-            <NumberPicker
-                android:id="@+id/numberpicker_main_picker"
-                android:layout_width="200dp"
-                android:layout_height="59dp"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@color/light_yellow"
-                android:baselineAligned="true"
-                android:fadeScrollbars="false"
-                android:scrollbarThumbHorizontal="@color/light_yellow"
-                android:solidColor="@color/dark_gray"
-                android:theme="@style/AppTheme.Picker"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView21"></NumberPicker>
-
-            <android.widget.Button
-                android:id="@+id/book_now_btn"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="55dp"
-                android:background="@drawable/button_style_ylo"
-                android:text="Book Now"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/numberpicker_main_picker" />
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
 
+    </com.google.android.material.card.MaterialCardView>
+
+
     <TextView
-        android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="175dp"
-        android:text="Name"
-        android:textColor="@color/light_yellow"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
+        android:layout_marginTop="20dp"
+        android:text="Select Number Of Umra"
+        android:textSize="17sp"
+        android:textColor="@color/light_gray"
+        android:textStyle="bold"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <NumberPicker
+        android:id="@+id/numberpicker_main_picker"
+        android:layout_width="180dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/light_yellow"
+        android:theme="@style/AppTheme.Picker"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal">
+
+    </NumberPicker>
+
+
+    <android.widget.Button
+        android:id="@+id/book_now_btn"
+        android:layout_width="260dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_style_ylo"
+        android:text="Book Now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="19sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>

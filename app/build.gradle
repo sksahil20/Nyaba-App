@@ -43,4 +43,7 @@ dependencies {
     implementation "androidx.camera:camera-camera2:${cameraxVersion}"
 
     implementation 'com.hbb20:ccp:2.5.3'
+
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
+
 }

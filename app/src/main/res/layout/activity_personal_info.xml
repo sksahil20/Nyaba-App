@@ -11,13 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:orientation="vertical">
 
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_left_24" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,7 +89,7 @@
                         android:id="@+id/PI_last_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -179,7 +175,8 @@
                     android:hint="Phone Number"
                     android:textColorHint="@color/white"
                     app:endIconMode="clear_text"
-                    app:endIconTint="@color/yellow">
+                    app:endIconTint="@color/yellow"
+                    android:layout_marginBottom="12dp">
 
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -207,7 +204,7 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_style_ylo"
             android:text="Next Step"
             android:textAllCaps="false"
