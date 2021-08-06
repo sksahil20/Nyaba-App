@@ -66,15 +66,15 @@
 
     <android.widget.Button
         android:id="@+id/imgCapture_front"
-        android:layout_width="200dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_style_ylo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Scan Now"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/yellow_round"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="19sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
         android:background="@drawable/yellow_stoke_button"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Scan Again"
-        android:onClick="scanAgain"
+        android:onClick="scanAgainFront"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="19sp"
@@ -121,6 +121,7 @@
         android:id="@+id/next"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/yellow_stoke_button"
         android:onClick="next"
         android:text="Next"
@@ -131,8 +132,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgCapture_front" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
