@@ -1,5 +1,9 @@
 package com.example.nyabaapplication;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,169 +14,187 @@ import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.lifecycle.LifecycleOwner;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Rational;
 import android.util.Size;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class back_scan extends AppCompatActivity {
 
-    private int REQUEST_CODE_PERMISSIONS = 101;
-    private String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA",
-            "android.permission.WRITE_EXTERNAL_STORAGE"};
-    AutoFitTextureView textureView;
+    ActivityResultLauncher<Intent> activityResultLauncher1;
+
+    private static final int PERMISSION_CODE = 101;
+
+    public String currentPhotoPath1;
+
+    Button backImgCap;
+
+    Button backImgCapAgain;
+
+    Button backNext;
+
+    ImageView backImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back_scan);
-        textureView = findViewById(R.id.view_finder);
 
-        ImageView scannedImg= findViewById(R.id.imageView7);
-        scannedImg.setVisibility(View.INVISIBLE);
+        backImg = findViewById(R.id.Image_id_back);
 
-        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
-        scanAgain.setVisibility(View.INVISIBLE);
+        backImgCap = findViewById(R.id.imgCapture_back);
+        backImgCap.setVisibility(VISIBLE);
 
-        android.widget.Button next=findViewById(R.id.next);
-        next.setVisibility(View.INVISIBLE);
-        if(allPermissionGranted()) {
-            startCamera();
-        }
-        else{
-            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS);
-        }
-    }
+        backImgCapAgain = findViewById(R.id.Back_imgCapture_again);
+        backImgCapAgain.setVisibility(GONE);
 
-    public void scan(View view) {
-        Intent myIntent = new Intent(back_scan.this,scanned_copy.class);
-        back_scan.this.startActivity(myIntent);
-        finish();
-    }
+        backNext = findViewById(R.id.back_next);
+        backNext.setVisibility(INVISIBLE);
 
-    public void arrow(View view) {
-        Intent myIntent = new Intent(back_scan.this,Front_Scan.class);
-        back_scan.this.startActivity(myIntent);
-        finish();
-    }
-
-    private boolean allPermissionGranted() {
-        System.out.println("allPermissionGranted: start");
-        for(String permission : REQUIRED_PERMISSIONS){
-
-            if(ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED){
-                System.out.println("allPermissionGranted: false");
-                return false;
-            }
-        }
-        System.out.println("allPermissionGranted: true");
-        return true;
-    }
-
-    private void startCamera() {
-        CameraX.unbindAll();
-        Rational aspectRatio = new Rational(textureView.getWidth(), textureView.getHeight());
-        Size screen = new Size(textureView.getWidth(), textureView.getHeight());
-        PreviewConfig pConfig = new PreviewConfig.Builder().setTargetAspectRatio(aspectRatio).setTargetResolution(screen).build();
-        Preview preview = new Preview(pConfig);
-        preview.setOnPreviewOutputUpdateListener(
-                new Preview.OnPreviewOutputUpdateListener() {
+        activityResultLauncher1 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
+                , new ActivityResultCallback<ActivityResult>() {
                     @Override
-                    public void onUpdated(Preview.PreviewOutput output) {
-                        ViewGroup parent = (ViewGroup) textureView.getParent();
-                        parent.removeView(textureView);
-                        parent.addView(textureView, 0);
-
-                        textureView.setSurfaceTexture(output.getSurfaceTexture());
-                    }
-                });
-        ImageCaptureConfig imageCaptureConfig = new ImageCaptureConfig.Builder().setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
-                .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).build();
-        final ImageCapture imgCap = new ImageCapture(imageCaptureConfig);
-        findViewById(R.id.imgCapture_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                File file = new File(getFilesDir()+"/Nyaba.jpg");
-
-                imgCap.takePicture(file, new ImageCapture.OnImageSavedListener() {
-                    @Override
-                    public void onImageSaved(@NonNull File file) {
-                        String msg = "Pic captured at " + file.getAbsolutePath();
-                        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-                        layoutChangesAfterScanning(v);
-                        readImgFromFile(v);
-                    }
-
-
-                    @Override
-                    public void onError(@NonNull ImageCapture.UseCaseError useCaseError, @NonNull String message, Throwable cause) {
-                        String msg = "Pic capture failed : " + message;
-                        Toast.makeText(getBaseContext(), msg,Toast.LENGTH_LONG).show();
-                        if(cause != null){
-                            cause.printStackTrace();
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == RESULT_OK) {
+                            File f1 = new File(currentPhotoPath1);
+                            backImgCapAgain.setVisibility(VISIBLE);
+                            backImgCap.setVisibility(INVISIBLE);
+                            backNext.setVisibility(VISIBLE);
+                            backImg.setImageURI(Uri.fromFile(f1));
                         }
                     }
                 });
+
+        backImgCap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //if system os is >= marshmallow, request runtime permission
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkSelfPermission(Manifest.permission.CAMERA) ==
+                            PackageManager.PERMISSION_DENIED ||
+                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                                    PackageManager.PERMISSION_DENIED) {
+                        //permission not enable, request it
+                        String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                        //show popup to request permissions
+                        requestPermissions(permission, PERMISSION_CODE);
+                    } else {
+                        //permission already given
+                        dispatchTakePictureIntent1();
+                    }
+                } else {
+                    //system os < marshmallow
+                    dispatchTakePictureIntent1();
+                }
             }
-        });        CameraX.bindToLifecycle((LifecycleOwner) this, preview, imgCap);
+        });
     }
 
-    public void readImgFromFile(View view)
-    {
-        ImageView scannedImg= findViewById(R.id.imageView7);
-        scannedImg.setVisibility(view.VISIBLE);
+    public void next1(View view) {
+        Intent myIntent = new Intent(back_scan.this, scanned_copy.class);
+        back_scan.this.startActivity(myIntent);
+        finish();
+    }
 
-        File imgFile = new  File(getFilesDir()+"/Nyaba.jpg");
-        if(imgFile.exists())
-        {
-            scannedImg.setImageURI(Uri.fromFile(imgFile));
+    public void scanAgainBack(View view) {
+        clearMyFiles1();
+        onCreateLayouts1();
+        backImg.setImageDrawable(getResources().getDrawable(R.drawable.id_back));
+    }
 
+    void clearMyFiles1() {
+        File imgFile1 = new File(currentPhotoPath1);
+        if (imgFile1 != null) {
+            imgFile1.delete();
         }
     }
 
-    public void layoutChangesAfterScanning(View view)
-    {
-        TextureView scanner= findViewById(R.id.view_finder);
-        scanner.setVisibility(view.INVISIBLE);
+    public void onCreateLayouts1() {
+        backImgCap.setVisibility(VISIBLE);
 
-        android.widget.Button scanAgain=findViewById(R.id.imgCapture_again);
-        scanAgain.setVisibility(View.INVISIBLE);
+        backImgCapAgain.setVisibility(GONE);
 
-        ImageView scannedImg= findViewById(R.id.imageView7);
-        scannedImg.setVisibility(view.VISIBLE);
-
-        android.widget.Button ScanNow =findViewById(R.id.imgCapture_back);
-        ScanNow.setVisibility(View.VISIBLE);
-
-        android.widget.Button next=findViewById(R.id.next);
-        next.setVisibility(View.VISIBLE);
-    }
-    public void next(View view) {
-        Intent myIntent = new Intent(back_scan.this,scanned_copy.class);
-        back_scan.this.startActivity(myIntent);
-        finish();
+        backNext.setVisibility(INVISIBLE);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionGranted()) {
-                startCamera();
-            } else {
-                Toast.makeText(this, "Permissions not granted by the user.", Toast.LENGTH_SHORT).show();
-                finish();
+
+        switch (requestCode) {
+
+            case PERMISSION_CODE:
+                if (grantResults.length > 0 && grantResults[0] ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    dispatchTakePictureIntent1();
+                } else {
+                    Toast.makeText(this, "permission denied...", Toast.LENGTH_SHORT).show();
+                }
+                return;
+        }
+    }
+
+    private File createImageFile1() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "BACK_ID_JPEG_" + timeStamp;
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath1 = image.getAbsolutePath();
+        return image;
+    }
+
+
+    private void dispatchTakePictureIntent1() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile1();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.nyabaapplication.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                activityResultLauncher1.launch(takePictureIntent);
             }
         }
     }

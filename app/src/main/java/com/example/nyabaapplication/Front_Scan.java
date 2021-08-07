@@ -55,12 +55,8 @@ public class Front_Scan extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncher;
 
     private static final int PERMISSION_CODE = 101;
-    private static final int IMAGE_CAPTURE_CODE = 102;
 
-    private static final int MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 101;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    static final int REQUEST_TAKE_PHOTO = 1;
-    String currentPhotoPath;
+    public String currentPhotoPath;
 
     Button frontImgCap;
     Button frontImgCapAgain;
@@ -68,12 +64,7 @@ public class Front_Scan extends AppCompatActivity {
 
     ImageView frontImg;
 
-    Uri image_uri;
 
-    private int REQUEST_CODE_PERMISSIONS = 101;
-    private String[] REQUIRED_PERMISSIONS = new String[]{"android.permission.CAMERA",
-            "android.permission.WRITE_EXTERNAL_STORAGE"};
-    AutoFitTextureView textureView;
 
 
     @Override
@@ -87,10 +78,6 @@ public class Front_Scan extends AppCompatActivity {
         frontImgCapAgain.setVisibility(GONE);
         frontNext = findViewById(R.id.front_next);
         frontNext.setVisibility(INVISIBLE);
-
-        ImageCaptureConfig imageCaptureConfig = new ImageCaptureConfig.Builder().setCaptureMode(ImageCapture.CaptureMode.MIN_LATENCY)
-                .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation()).build();
-        final ImageCapture imgCap = new ImageCapture(imageCaptureConfig);
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
                 , new ActivityResultCallback<ActivityResult>() {
@@ -136,25 +123,6 @@ public class Front_Scan extends AppCompatActivity {
 
     }
 
-
-
-
-   /* private void openCamera() {
-
-        File file = new File(getFilesDir() + "/Nyaba.documnet.front.jpg");
-
-        ContentValues values = new ContentValues();
-        values.put(MediaStore.Images.Media.TITLE, "New Picture");
-        values.put(MediaStore.Images.Media.DESCRIPTION, "From the camera");
-        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-        //Camera intent
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
-       // startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE);
-        activityResultLauncher.launch(cameraIntent);
-
-    }*/
-
     public void next(View view) {
         Intent myIntent = new Intent(Front_Scan.this, back_scan.class);
         Front_Scan.this.startActivity(myIntent);
@@ -164,10 +132,11 @@ public class Front_Scan extends AppCompatActivity {
     public void scanAgain(View view) {
         clearMyFiles();
         onCreateLayouts();
+        frontImg.setImageDrawable(getResources().getDrawable(R.drawable.id_front));
     }
 
     void clearMyFiles() {
-        File imgFile = new File(getFilesDir() + "/Nyaba.documnet.front.jpg");
+        File imgFile = new File(currentPhotoPath);
         if (imgFile != null) {
             imgFile.delete();
         }
@@ -202,18 +171,10 @@ public class Front_Scan extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @NonNull Intent data) {
-        //called when image was captured from camera
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-    }
-
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "FRONT_ID_JPEG_" + timeStamp + "_";
+        String imageFileName = "FRONT_ID_JPEG" + timeStamp;
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
