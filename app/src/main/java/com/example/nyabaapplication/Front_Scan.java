@@ -185,8 +185,7 @@ public class Front_Scan extends AppCompatActivity {
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageFileName = "FRONT_ID_JPEG" + timeStamp;
-        String imageFileName = "FRONT_ID_JPEG" ;
+        String imageFileName = "FRONT_ID_JPEG" + timeStamp;
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
