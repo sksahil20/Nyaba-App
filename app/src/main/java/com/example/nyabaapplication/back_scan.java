@@ -116,7 +116,15 @@ public class back_scan extends AppCompatActivity {
         });
     }
 
+    public void goToScannedCopy()
+    {
+        Intent intent=new Intent(back_scan.this,scanned_copy.class);
+        intent.putExtra("backScan", currentPhotoPath1);
+        startActivity(intent);
+    }
+
     public void next1(View view) {
+        goToScannedCopy();
         Intent myIntent = new Intent(back_scan.this, scanned_copy.class);
         back_scan.this.startActivity(myIntent);
         finish();

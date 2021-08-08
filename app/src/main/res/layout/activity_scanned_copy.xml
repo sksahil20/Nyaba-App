@@ -96,8 +96,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/id_front" />
+                            android:scaleType="fitXY"/>
+<!--                            android:src="@drawable/id_front" />-->
 
 
                     </LinearLayout>
@@ -137,8 +137,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/id_back" />
+                            android:scaleType="fitXY"/>
+<!--                            android:src="@drawable/id_back" />-->
 
 
                     </LinearLayout>

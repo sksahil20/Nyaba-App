@@ -58,6 +58,7 @@ public class Front_Scan extends AppCompatActivity {
 
     public String currentPhotoPath;
 
+
     Button frontImgCap;
     Button frontImgCapAgain;
     Button frontNext;
@@ -78,6 +79,8 @@ public class Front_Scan extends AppCompatActivity {
         frontImgCapAgain.setVisibility(GONE);
         frontNext = findViewById(R.id.front_next);
         frontNext.setVisibility(INVISIBLE);
+
+
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult()
                 , new ActivityResultCallback<ActivityResult>() {
@@ -123,7 +126,15 @@ public class Front_Scan extends AppCompatActivity {
 
     }
 
+    public void goToScannedCopy()
+    {
+        Intent intent=new Intent(Front_Scan.this,scanned_copy.class);
+        intent.putExtra("frontScan", currentPhotoPath);
+        startActivity(intent);
+    }
+
     public void next(View view) {
+        goToScannedCopy();
         Intent myIntent = new Intent(Front_Scan.this, back_scan.class);
         Front_Scan.this.startActivity(myIntent);
         finish();
@@ -174,7 +185,8 @@ public class Front_Scan extends AppCompatActivity {
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "FRONT_ID_JPEG" + timeStamp;
+//        String imageFileName = "FRONT_ID_JPEG" + timeStamp;
+        String imageFileName = "FRONT_ID_JPEG" ;
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */

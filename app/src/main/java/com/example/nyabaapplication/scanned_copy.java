@@ -19,9 +19,9 @@ public class scanned_copy extends AppCompatActivity {
 
     Button finishBtn;
 
-    ImageView scanIDBack;
-
-    ImageView scanIDFront;
+//    ImageView scanIDBack;
+//
+//    ImageView scanIDFront;
 
     String storeFrontScan;
     String storeBackScan="BACK_ID_JPEG.jpg";
@@ -34,9 +34,6 @@ public class scanned_copy extends AppCompatActivity {
         readFrontImgFromFile();
         readBackImgFromFile();
 
-        scanIDBack = findViewById(R.id.Scan_id_back);
-
-        scanIDFront = findViewById(R.id.Scan_id_front);
 
         finishBtn = findViewById(R.id.ScanfinishBtn);
         finishBtn.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +50,12 @@ public class scanned_copy extends AppCompatActivity {
 
     public void readFrontImgFromFile()
     {
-        File imgFileFront = new  File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)+storeFrontScan);
+        Bundle b = new Bundle();
+        b = getIntent().getExtras();
+        String name = b.getString("frontScan");
+
+        ImageView scanIDFront = findViewById(R.id.Scan_id_front);
+      File imgFileFront = new File(name);
         if(imgFileFront.exists())
         {
             scanIDFront.setImageURI(Uri.fromFile(imgFileFront));
@@ -63,7 +65,12 @@ public class scanned_copy extends AppCompatActivity {
 
     public void readBackImgFromFile()
     {
-        File imgFileBack = new  File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)+storeBackScan);
+        Bundle b = new Bundle();
+        b = getIntent().getExtras();
+        String name = b.getString("backScan");
+
+        ImageView scanIDBack = findViewById(R.id.Scan_id_back);
+        File imgFileBack = new  File(name);
         if(imgFileBack.exists())
         {
             scanIDBack.setImageURI(Uri.fromFile(imgFileBack));
